@@ -1474,6 +1474,16 @@ void GameScript::tick(uint64_t dt) {
     dma->tick(dt);
   }
 
+void GameScript::worldChangeBegin() {
+  if(dma!=nullptr)
+    dma->worldChangeBegin();
+  }
+
+void GameScript::worldChangeEnd() {
+  if(dma!=nullptr)
+    dma->worldChangeEnd();
+  }
+
 uint32_t GameScript::rand(uint32_t max) {
   return uint32_t(randGen())%max;
   }

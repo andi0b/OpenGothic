@@ -21,6 +21,8 @@ class DirectMemory {
     // hooks
     void        tick(uint64_t dt);
     void        eventPlayAni(std::string_view ani);
+    void        worldChangeBegin();
+    void        worldChangeEnd();
 
   private:
     using ptr32_t      = Mem32::ptr32_t;

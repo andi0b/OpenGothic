@@ -197,6 +197,16 @@ bool DirectMemory::isRequired(zenkit::DaedalusScript& vm) {
       vm.find_symbol_by_name("_^") != nullptr;
   }
 
+void DirectMemory::worldChangeBegin() {
+  if(auto* sym = vm.find_symbol_by_name("_LeGo_ChangeLevelHookBegin"))
+    vm.call_function(sym);
+  }
+
+void DirectMemory::worldChangeEnd() {
+  if(auto* sym = vm.find_symbol_by_name("_LeGo_ChangeLevelHookEnd"))
+    vm.call_function(sym);
+  }
+
 void DirectMemory::tick(uint64_t dt) {
   //TODO: propper hook-engine
   if(auto* sym = vm.find_symbol_by_name("_FF_Hook")) {

@@ -370,6 +370,18 @@ auto GameSession::implChangeWorld(std::unique_ptr<GameSession>&& game,
     return std::move(game);
     }
 
+  struct WorldChangeNotification {
+    GameScript& script;
+
+    explicit WorldChangeNotification(GameScript& script) : script(script) {
+      script.worldChangeBegin();
+      }
+
+    ~WorldChangeNotification() {
+      script.worldChangeEnd();
+      }
+    } worldChangeNotification(*vm);
+
   HeroStorage hdata;
   if(auto hero = wrld->player())
     hdata.save(*hero);
